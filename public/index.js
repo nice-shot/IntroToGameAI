@@ -10,6 +10,7 @@ let cursors;
 let guard;
 let guardMovingUp = false;
 let seenPlayer = false;
+let gameOverText;
 
 
 class GameLoop extends Phaser.Scene {
@@ -60,6 +61,19 @@ class GameLoop extends Phaser.Scene {
 
 
 		this.physics.add.collider(player, wallsLayer);
+		this.physics.add.collider(player, guard);
+
+
+		const { width, height } = this.sys.canvas;
+
+		gameOverText = this.add
+			.text(width / 2, height / 2, 'Game Over', {
+				fill: '#0f0',
+				backgroundColor: 'rgba(0, 0, 0, .5)',
+			})
+			.setOrigin()
+			.setVisible(false)
+		;
 
 
 		// Animations
@@ -197,7 +211,7 @@ class GameLoop extends Phaser.Scene {
 		const GUARD_TOP = 15;
 		const GUARD_BOTTOM = 140;
 		const VIEW_START = 100;
-		const VIEW_END = 150;
+		const VIEW_END = 145;
 
 		guard.body.setVelocity(0);
 
@@ -230,6 +244,7 @@ class GameLoop extends Phaser.Scene {
 			guard.anims.stop();
 			player.anims.stop();
 			player.body.setVelocity(0);
+			gameOverText.setVisible(true);
 			return;
 		}
 		this.updatePlayerMovement();
