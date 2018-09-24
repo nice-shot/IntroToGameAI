@@ -11,6 +11,7 @@ let guard;
 let guardMovingUp = false;
 let seenPlayer = false;
 let gameOverText;
+let restartBtn;
 
 
 class GameLoop extends Phaser.Scene {
@@ -74,6 +75,23 @@ class GameLoop extends Phaser.Scene {
 			.setOrigin()
 			.setVisible(false)
 		;
+
+		restartBtn = this.add
+			.text(5, 16, 'Restart', {
+				fill: '#f00',
+				backgroundColor: 'rgba(0, 0, 0, 0.8)',
+				resolution: 40,
+			})
+			.setInteractive()
+			.on('pointerdown', () => {
+				guardMovingUp = false;
+				seenPlayer = false;
+				gameOverText.setVisible(false);
+				player.setPosition(playerSpawn.x, playerSpawn.y);
+				guard.setPosition(guardSpawn.x, guardSpawn.y);
+			})
+		;
+
 
 
 		// Animations
