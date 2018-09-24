@@ -6,8 +6,10 @@
 
 // let controls;
 let player;
-let guard;
 let cursors;
+let guard;
+let guardMovingUp = false;
+
 
 class GameLoop extends Phaser.Scene {
 	constructor() {
@@ -92,14 +94,14 @@ class GameLoop extends Phaser.Scene {
 		anims.create({
 			key: 'guard_front_walk',
 			frames: anims.generateFrameNames('guard', { prefix: 'boss_front_walk.', start: 0, end: 3, zeroPad: 3 }),
-			frameRate: 10,
+			frameRate: 5,
 			repeat: -1
 		});
 
 		anims.create({
 			key: 'guard_back_walk',
 			frames: anims.generateFrameNames('guard', { prefix: 'boss_back_walk.', start: 0, end: 3, zeroPad: 3 }),
-			frameRate: 10,
+			frameRate: 5,
 			repeat: -1
 		})
 
@@ -189,8 +191,33 @@ class GameLoop extends Phaser.Scene {
 		}
 	}
 
+	updateGuardMovement() {
+		const speed = 90;
+		const GUARD_TOP = 15;
+		const GUARD_BOTTOM = 150;
+
+		guard.body.setVelocity(0);
+
+		// console.log(guard.y);
+
+		// Change direction when reaching end of route
+		if (guard.y <= GUARD_TOP || guard.y >= GUARD_BOTTOM) {
+			guardMovingUp = !guardMovingUp;
+		}
+
+		// TODO: Add pause before changing direction
+		if (guardMovingUp) {
+			guard.body.setVelocityY(-speed);
+			guard.anims.play('guard_back_walk', true);
+		} else {
+			guard.body.setVelocityY(speed);
+			guard.anims.play('guard_front_walk', true);
+		}
+	}
+
 	update(time, delta) {
 		this.updatePlayerMovement();
+		this.updateGuardMovement();
 	}
 }
 
