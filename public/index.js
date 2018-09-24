@@ -140,7 +140,7 @@ class GameLoop extends Phaser.Scene {
 
 	}
 
-	update(time, delta) {
+	updatePlayerMovement() {
 		const speed = 175;
 		const prevVelocity = player.body.velocity.clone();
 
@@ -187,6 +187,10 @@ class GameLoop extends Phaser.Scene {
 			}
 
 		}
+	}
+
+	update(time, delta) {
+		this.updatePlayerMovement();
 	}
 }
 
