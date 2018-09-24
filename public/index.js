@@ -9,6 +9,7 @@ let player;
 let cursors;
 let guard;
 let guardMovingUp = false;
+let seenPlayer = false;
 
 
 class GameLoop extends Phaser.Scene {
@@ -194,11 +195,20 @@ class GameLoop extends Phaser.Scene {
 	updateGuardMovement() {
 		const speed = 90;
 		const GUARD_TOP = 15;
-		const GUARD_BOTTOM = 150;
+		const GUARD_BOTTOM = 140;
+		const VIEW_START = 100;
+		const VIEW_END = 150;
 
 		guard.body.setVelocity(0);
 
-		// console.log(guard.y);
+		// Check if seen the player
+		if (!guardMovingUp) {
+			if (player.x > VIEW_START && player.x < VIEW_END) {
+				seenPlayer = true;
+				return;
+			}
+		}
+
 
 		// Change direction when reaching end of route
 		if (guard.y <= GUARD_TOP || guard.y >= GUARD_BOTTOM) {
@@ -216,6 +226,12 @@ class GameLoop extends Phaser.Scene {
 	}
 
 	update(time, delta) {
+		if (seenPlayer) {
+			guard.anims.stop();
+			player.anims.stop();
+			player.body.setVelocity(0);
+			return;
+		}
 		this.updatePlayerMovement();
 		this.updateGuardMovement();
 	}
