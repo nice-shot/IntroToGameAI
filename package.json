@@ -4,6 +4,7 @@
   "description": "A seminar paper about AI techniques in game design",
   "scripts": {
     "start": "http-server -o",
+    "build": "node ./src/build.js > public/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nadav Sheffer",
