@@ -6,6 +6,7 @@
 
 // let controls;
 let player;
+let guard;
 let cursors;
 
 class GameLoop extends Phaser.Scene {
@@ -15,6 +16,7 @@ class GameLoop extends Phaser.Scene {
 
 	preload() {
 		this.load.atlas("ninja", "assets/ninja.png", "assets/ninja-atlas.json");
+		this.load.atlas("guard", "assets/boss.png", "assets/boss-atlas.json");
 		this.load.image("floors", "assets/Interior_Floors_by_George.png");
 		this.load.image("walls", "assets/Interior_Walls_by_George.png");
 		this.load.tilemapTiledJSON("map", "assets/gameloop_map.json");
@@ -34,22 +36,33 @@ class GameLoop extends Phaser.Scene {
 		wallsLayer.setCollisionBetween(1, 999);
 		// aboveLayer.setDepth(10); // Show above player
 
-		const spawnPoint = map.findObject('Objects', obj => obj.name === 'SpawnPosition');
+		const playerSpawn = map.findObject('Objects', obj => obj.name === 'PlayerSpawn');
+		const guardSpawn = map.findObject('Objects', obj => obj.name === 'GuardSpawn');
 
-		// Setting player
+		// Characters
 
 		player = this.physics.add
-			.sprite(spawnPoint.x, spawnPoint.y, "ninja", "ninja_front")
+			.sprite(playerSpawn.x, playerSpawn.y, "ninja", "ninja_front")
 			.setSize(16, 16)
 			.setOffset(0, 15)
 			.setCollideWorldBounds(true)
 		;
 
+		guard = this.physics.add
+			.sprite(guardSpawn.x, guardSpawn.y, "guard", "boss_front")
+			.setSize(16, 16)
+			.setOffset(0, 15)
+			.setCollideWorldBounds(true)
+		;
+
+
 		this.physics.add.collider(player, wallsLayer);
 
+
+		// Animations
 		const anims = this.anims;
 
-		// Player animations
+		// Player animation
 		anims.create({
 			key: 'ninja_left_walk',
 			frames: anims.generateFrameNames("ninja", { prefix: 'ninja_left_walk.', start: 0, end: 3, zeroPad: 3 }),
@@ -74,6 +87,22 @@ class GameLoop extends Phaser.Scene {
 			frameRate: 10,
 			repeat: -1
 		});
+
+		// Guard animation
+		anims.create({
+			key: 'guard_front_walk',
+			frames: anims.generateFrameNames('guard', { prefix: 'boss_front_walk.', start: 0, end: 3, zeroPad: 3 }),
+			frameRate: 10,
+			repeat: -1
+		});
+
+		anims.create({
+			key: 'guard_back_walk',
+			frames: anims.generateFrameNames('guard', { prefix: 'boss_back_walk.', start: 0, end: 3, zeroPad: 3 }),
+			frameRate: 10,
+			repeat: -1
+		})
+
 
 		// Camera setup
 
