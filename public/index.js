@@ -12,6 +12,9 @@ let guardMovingUp = false;
 let seenPlayer = false;
 let gameOverText;
 let restartBtn;
+let score = 0;
+let scoreText;
+let targetRight = true;
 
 
 class GameLoop extends Phaser.Scene {
@@ -65,11 +68,13 @@ class GameLoop extends Phaser.Scene {
 		this.physics.add.collider(player, guard);
 
 
+		// UI
+
 		const { width, height } = this.sys.canvas;
 
 		gameOverText = this.add
 			.text(width / 2, height / 2, 'Game Over', {
-				fill: '#0f0',
+				fill: 'red',
 				backgroundColor: 'rgba(0, 0, 0, .5)',
 			})
 			.setOrigin()
@@ -78,9 +83,8 @@ class GameLoop extends Phaser.Scene {
 
 		restartBtn = this.add
 			.text(5, 16, 'Restart', {
-				fill: '#f00',
-				backgroundColor: 'rgba(0, 0, 0, 0.8)',
-				resolution: 40,
+				fill: 'white',
+				backgroundColor: 'rgba(0, 0, 0, 0.6)',
 			})
 			.setInteractive()
 			.on('pointerdown', () => {
@@ -92,7 +96,14 @@ class GameLoop extends Phaser.Scene {
 			})
 		;
 
-
+		scoreText = this.add
+			.text(width - 5, 16, score, {
+				fill: '#0f0',
+				backgroundColor: 'rgba(0, 0, 0, 0.6)',
+				align: 'right',
+			})
+			.setOrigin(1, 0)
+		;
 
 		// Animations
 		const anims = this.anims;
@@ -257,6 +268,18 @@ class GameLoop extends Phaser.Scene {
 		}
 	}
 
+	calculateScore() {
+		// Where the player needs to go
+		const TARGETS = [30, 210];
+
+		if ((targetRight && player.x >= TARGETS[1])
+			|| (!targetRight && player.x <= TARGETS[0])) {
+			targetRight = !targetRight;
+			score++;
+			scoreText.setText(score);
+		}
+	}
+
 	update(time, delta) {
 		if (seenPlayer) {
 			guard.anims.stop();
@@ -267,6 +290,7 @@ class GameLoop extends Phaser.Scene {
 		}
 		this.updatePlayerMovement();
 		this.updateGuardMovement();
+		this.calculateScore();
 	}
 }
 
