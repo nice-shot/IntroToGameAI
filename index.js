@@ -90,6 +90,9 @@ class GameLoop extends Phaser.Scene {
 			.on('pointerdown', () => {
 				guardMovingUp = false;
 				seenPlayer = false;
+				score = 0;
+				targetRight = true;
+				scoreText.setText(score);
 				gameOverText.setVisible(false);
 				player.setPosition(playerSpawn.x, playerSpawn.y);
 				guard.setPosition(guardSpawn.x, guardSpawn.y);
