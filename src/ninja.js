@@ -13,13 +13,13 @@ class Ninja {
 		const name = Ninja.name
 		const directions = ['left', 'right', 'front', 'back']
 
-		for (let direction in directions) {
+		for (let direction of directions) {
 			const moveName = `${name.toLowerCase()}_${direction}_walk`
 			anims.create({
 				key: moveName,
 				frames: anims.generateFrameNames(
 					name,
-					{ prefix: moveName, start: 0, end: 3, zeroPad: 3}
+					{ prefix: moveName + '.', start: 0, end: 3, zeroPad: 3}
 				),
 				frameRate: 10,
 				repeat: -1,
@@ -37,6 +37,7 @@ class Ninja {
 			.setCollideWorldBounds(true)
 
 		this.moveTo = new Phaser.Math.Vector2(xPos, yPos)
+		console.log(this.sprite.anims)
 	}
 
 	setMoveTo(position) {
@@ -50,16 +51,29 @@ class Ninja {
 		const Equal = Phaser.Math.Fuzzy.Equal
 		if (Equal(this.moveTo.x, this.sprite.x, 1)
 			&& Equal(this.moveTo.y, this.sprite.y, 1)) {
+			this.sprite.anims.stop()
 			return
 		}
+
 		scene.physics.moveTo(
 			this.sprite,
 			this.moveTo.x,
 			this.moveTo.y,
 			100,
 		)
-		// this.sprite.setPosition(position.lerp(this.moveTo, 0.5))
-		// console.log(scene);
+
+		const name = Ninja.name.toLowerCase()
+		const angle = this.sprite.body.angle * (180 / Math.PI)
+
+		if (angle >= 45 && angle <= 135) {
+			this.sprite.anims.play(name + '_front_walk', true)
+		} else if (angle <= -45 && angle >= -135) {
+			this.sprite.anims.play(name + '_back_walk', true)
+		} else if (angle < 45 && angle > -45) {
+			this.sprite.anims.play(name + '_right_walk', true)
+		} else {
+			this.sprite.anims.play(name + '_left_walk', true)
+		}
 	}
 }
 
