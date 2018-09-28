@@ -1,8 +1,4 @@
-/**
- * Author: Michael Hadley, mikewesthad.com
- * Asset Credits:
- *  - Subtle Patterns
- */
+import Phaser from 'phaser';
 
 // let controls;
 let player;
