@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
-import TILESET from './images/castle_tileset.png'
-import MAP from './maps/stupid_navigation_map.json'
+import TILESET from '../images/castle_tileset.png'
+import MAP from '../maps/stupid_navigation_map.json'
 
-import Ninja from './ninja.js'
+import Ninja from '../ninja.js'
 
 let character;
 
@@ -39,20 +39,4 @@ class StupidNavigation extends Phaser.Scene {
 	}
 }
 
-const config = {
-	scene: [StupidNavigation],
-	type: Phaser.AUTO,
-	width: 240,
-	height: 240,
-	zoom: 2,
-	pixelArt: true,
-	parent: 'game-container',
-	physics: {
-		default: 'arcade',
-		arcade: {
-			gravity: { y: 0 },
-		},
-	},
-}
-
-const game = new Phaser.Game(config)
+export default StupidNavigation

@@ -293,21 +293,4 @@ class GameLoop extends Phaser.Scene {
 	}
 }
 
-const config = {
-	type: Phaser.AUTO,
-	width: 240,
-	height: 256,
-	zoom: 2,
-	pixelArt: true,
-	backgroundColor: '#222222',
-	parent: 'game-container',
-	scene: [GameLoop],
-	physics: {
-		default: 'arcade',
-		arcade: {
-			gravity: { y: 0 }
-		}
-	}
-};
-
-const game = new Phaser.Game(config);
+export default GameLoop

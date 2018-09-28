@@ -4,8 +4,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
 	entry: {
-		minigame1: './src/simple_sneak.js',
-		minigame2: './src/stupid_navigation.js',
+		minigame1: './src/games/minigame1.js',
+		minigame2: './src/games/minigame2.js',
 	},
 	plugins: [
 		new CleanWebpackPlugin(['./dist']),
