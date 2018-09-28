@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 // let controls;
 let player;
 let cursors;
@@ -295,7 +297,7 @@ const config = {
 	type: Phaser.AUTO,
 	width: 240,
 	height: 256,
-	zoom: 4,
+	zoom: 2,
 	pixelArt: true,
 	backgroundColor: '#222222',
 	parent: 'game-container',
