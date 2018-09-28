@@ -1,5 +1,5 @@
 import loadGame from '../load_game'
-import map from '../maps/stupid_navigation_map.json'
+import map from '../maps/complex_navigation_map.json'
 import stupidNavigationFactory from '../scenes/stupid_navigation'
 
 const game = loadGame({

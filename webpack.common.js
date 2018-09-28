@@ -6,6 +6,7 @@ module.exports = {
 	entry: {
 		minigame1: './src/games/minigame1.js',
 		minigame2: './src/games/minigame2.js',
+		minigame3: './src/games/minigame3.js',
 	},
 	plugins: [
 		new CleanWebpackPlugin(['./dist']),
