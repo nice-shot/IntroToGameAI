@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Example A - Simple Action</title>
+
+		<style>
+	/*		html,
+			body,
+			#game-container {
+				margin: 0;
+				padding: 0;
+			}
+
+			#game-container {
+				min-width: 100vw;
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			#game-container>canvas {
+				border-radius: 5px;
+			}*/
+			body {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				margin: 8px;
+				padding: 0;
+			}
+
+			#game-container>canvas {
+				border-radius: 5px;
+			}
+
+			.description {
+				margin-left: 8px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="game-container"></div>
+		<div class="description">
+			<h1>Example A - Simple Action</h1>
+			<p>
+				<h3>Controls:</h3>
+				Arrow keys - Move
+			</p>
+			<p>
+				<h3>Target:</h3>
+				Walk back and forth to the other edge of the screen to score points.
+				Avoid getting detected by the guard.
+			</p>
+			<p>
+				<h3>Credits:</h3>
+				<ul>
+					<li>
+						Art assets from open source project
+						<a href="https://github.com/Tuxemon/Tuxemon">Tuxemon</a>.
+					</li>
+					<li>
+						Game engine: <a href="https://phaser.io/">Phaser 3</a>
+					</li>
+			</p>
+		</div>
+		<script src="/js/extras.js"></script>
+		<script src="/js/minigame1.js"></script>
+	</body>
+
+</html>
