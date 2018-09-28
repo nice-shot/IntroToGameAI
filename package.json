@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "description": "Seminar paper with examples of AI techniques in video games",
   "private": true,
+  "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "http-server -o"
+    "build": "webpack --config "
   },
   "author": "Nadav Sheffer",
   "license": "ISC",
   "devDependencies": {
     "gh-pages": "^2.0.0",
-    "http-server": "^0.11.1",
-    "webpack": "^4.20.2"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
   },
   "dependencies": {
     "phaser": "^3.13.0"
