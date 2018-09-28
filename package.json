@@ -2,7 +2,7 @@
   "name": "intro-to-game-ai",
   "version": "0.1.0",
   "description": "Seminar paper with examples of AI techniques in video games",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "http-server -o"
@@ -12,5 +12,8 @@
   "devDependencies": {
     "gh-pages": "^2.0.0",
     "http-server": "^0.11.1"
+  },
+  "dependencies": {
+    "webpack": "^4.20.2"
   }
 }
