@@ -6,8 +6,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "publish": "gh-pages -d dist"
+    "start": "webpack-dev-server --open --config webpack.dev.js"
   },
   "author": "Nadav Sheffer",
   "license": "ISC",
