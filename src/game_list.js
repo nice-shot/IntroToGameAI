@@ -44,4 +44,12 @@ module.exports = [
 		goal: NAVIGATION_GOAL,
 		credits: [...STANDARD_CREDITS, EASYSTAR_CREDIT],
 	},
+	{
+		entry: 'minigame5',
+		src: './src/games/minigame5.js',
+		name: 'Example C - FSM',
+		controls: ARROW_CONTROLS,
+		goal: 'Get to the treasure without making the guard trigger the alarm',
+		credits: [...STANDARD_CREDITS, EASYSTAR_CREDIT],
+	},
 ]
