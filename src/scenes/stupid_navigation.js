@@ -8,7 +8,7 @@ let character;
 function stupidNavigationFactory(MAP) {
 	class StupidNavigation extends Phaser.Scene {
 		constructor() {
-			super({ key: 'StupidNavigation' })
+			super('StupidNavigation')
 		}
 
 		preload() {

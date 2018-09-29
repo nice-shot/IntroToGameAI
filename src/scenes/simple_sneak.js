@@ -15,7 +15,7 @@ let targetRight = true;
 
 class GameLoop extends Phaser.Scene {
 	constructor() {
-		super({ key: 'GameLoop' });
+		super('GameLoop');
 	}
 
 	preload() {

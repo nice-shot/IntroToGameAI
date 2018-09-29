@@ -37,7 +37,6 @@ class Ninja {
 			.setCollideWorldBounds(true)
 
 		this.moveTo = new Phaser.Math.Vector2(xPos, yPos)
-		console.log(this.sprite.anims)
 	}
 
 	setMoveTo(position) {
