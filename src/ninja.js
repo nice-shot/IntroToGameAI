@@ -79,7 +79,7 @@ class Ninja {
 			this.sprite,
 			this.moveTo.x,
 			this.moveTo.y,
-			100,
+			150,
 		)
 
 		const name = Ninja.name.toLowerCase()
