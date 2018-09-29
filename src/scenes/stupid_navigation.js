@@ -22,12 +22,13 @@ function stupidNavigationFactory(MAP) {
 			const tileset = map.addTilesetImage("Castle", "tileset")
 			const floorLayer = map.createStaticLayer('Floor', tileset, 0, 0)
 			const wallsLayer = map.createStaticLayer('Walls', tileset, 0, 0)
-				// .setDepth(30)
 				.setCollisionBetween(1, 999)
+			const aboveLayer = map.createStaticLayer('Above', tileset, 0, 0)
+				.setDepth(30)
 
 			Ninja.createAnimations(this)
 
-			character = new Ninja(this, 120, 120)
+			character = new Ninja(this, 24, 178)
 			this.input.on('pointerdown', pointer => {
 				character.setMoveTo(pointer.position)
 			})
