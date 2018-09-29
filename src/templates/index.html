@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title><%= title %></title>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<p>
+			Examples of techniques and concepts mentioned in the seminar paper
+			"Intro to AI in Game". Written by Nadav Sheffer
+		</p>
+		<ul>
+			<% games.map(example => { %>
+				<li>
+					<a href="<%= example.entry %>.html">
+						<%=example.name%>
+					</a>
+				</li>
+			<%})%>
+		</ul>
+	</body>
+</html>
