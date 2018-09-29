@@ -43,8 +43,6 @@ class Ninja {
 
 	setMoveTo(position) {
 		this.moveTo = position.clone()
-		console.log('Moving to:')
-		console.log(this.moveTo)
 	}
 
 	setPath(path) {
@@ -52,8 +50,6 @@ class Ninja {
 		this.path = path
 		this.path.reverse()
 		this.setMoveTo(this.path.pop())
-		console.log('Got path')
-		console.log(path)
 	}
 
 	checkPath() {

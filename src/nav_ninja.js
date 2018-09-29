@@ -30,7 +30,6 @@ class Ninja {
 	constructor(scene, xPos, yPos) {
 		const name = Ninja.name;
 
-		console.log('Starting position: ' + [xPos, yPos])
 		this.sprite = scene.physics.add
 			.sprite(xPos, yPos, name, name.toLowerCase() + '_front')
 			.setSize(16, 16)
@@ -49,16 +48,10 @@ class Ninja {
 	}
 
 	setPath(path) {
-		console.log('Current Position:')
-		console.log(this.sprite.body.position)
-		console.log('Sprite Position: ')
-		console.log([this.sprite.x, this.sprite.y])
 		this.waitingForPath = false
 		this.path = path
 		this.path.reverse()
 		this.setMoveTo(this.path.pop())
-		console.log('Got path')
-		console.log(path.slice())
 	}
 
 	checkPath() {
