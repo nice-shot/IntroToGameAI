@@ -1,11 +1,10 @@
 import Phaser from 'phaser'
-import Character from '../character'
+import ArrowControlledCharacter from '../arrow_controlled_character'
 
 import MAP from '../maps/stupid_navigation_map.json'
 import TILESET from '../images/castle_tileset.png'
 
-let player = new Character('ninja')
-let cursors
+let player = new ArrowControlledCharacter('ninja')
 
 class DiamondHeist extends Phaser.Scene {
 	constructor() {
@@ -29,34 +28,9 @@ class DiamondHeist extends Phaser.Scene {
 		player.create(this, 120, 120)
 
 		this.physics.add.collider(wallsLayer, player.sprite)
-
-		cursors = this.input.keyboard.createCursorKeys();
-
 	}
 
 	update(time, delta) {
-		const speed = 100
-
-		// Stop moving
-		player.sprite.body.setVelocity(0)
-
-		// Horizontal movement
-		if (cursors.left.isDown) {
-			player.sprite.body.setVelocityX(-100);
-		} else if (cursors.right.isDown) {
-			player.sprite.body.setVelocityX(100);
-		}
-
-		// Vertical movement
-		if (cursors.up.isDown) {
-			player.sprite.body.setVelocityY(-100);
-		} else if (cursors.down.isDown) {
-			player.sprite.body.setVelocityY(100);
-		}
-
-		// Avoid speed boost in diagonals
-		player.sprite.body.velocity.normalize().scale(speed)
-
 		player.update(this, time, delta)
 	}
 }
