@@ -5,12 +5,12 @@ import ATLAS from './sprites/ninja_atlas.json'
 
 class Ninja {
 	static preload(scene) {
-		scene.load.atlas(Ninja.name, SPRITESHEET, ATLAS)
+		scene.load.atlas('ninja', SPRITESHEET, ATLAS)
 	}
 
 	static createAnimations(scene) {
 		const anims = scene.anims
-		const name = Ninja.name
+		const name = 'ninja'
 		const directions = ['left', 'right', 'front', 'back']
 
 		for (let direction of directions) {
@@ -28,7 +28,7 @@ class Ninja {
 	}
 
 	constructor(scene, xPos, yPos) {
-		const name = Ninja.name;
+		const name = 'ninja';
 
 		this.sprite = scene.physics.add
 			.sprite(xPos, yPos, name, name.toLowerCase() + '_front')
@@ -82,7 +82,7 @@ class Ninja {
 			150,
 		)
 
-		const name = Ninja.name.toLowerCase()
+		const name = 'ninja'
 		const angle = this.sprite.body.angle * (180 / Math.PI)
 
 		if (angle >= 45 && angle <= 135) {
