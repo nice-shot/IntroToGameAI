@@ -37,6 +37,8 @@ class Ninja {
 			.setCollideWorldBounds(true)
 
 		this.moveTo = new Phaser.Math.Vector2(xPos, yPos)
+		this.waitingForPath = false
+		this.path = []
 	}
 
 	setMoveTo(position) {
@@ -45,12 +47,35 @@ class Ninja {
 		console.log(this.moveTo)
 	}
 
+	setPath(path) {
+		this.waitingForPath = false
+		this.path = path
+		this.path.reverse()
+		this.setMoveTo(this.path.pop())
+		console.log('Got path')
+		console.log(path)
+	}
+
+	checkPath() {
+		const Equal = Phaser.Math.Fuzzy.Equal
+		if (!Equal(this.moveTo.x, this.sprite.x, 1)
+			|| !Equal(this.moveTo.y, this.sprite.y, 1)) {
+			return false
+		}
+
+		if (this.path && this.path.length > 0) {
+			this.setMoveTo(this.path.pop())
+			return false
+		}
+
+		this.sprite.anims.stop()
+		return true
+
+	}
+
 	update(scene) {
 		this.sprite.setVelocity(0)
-		const Equal = Phaser.Math.Fuzzy.Equal
-		if (Equal(this.moveTo.x, this.sprite.x, 1)
-			&& Equal(this.moveTo.y, this.sprite.y, 1)) {
-			this.sprite.anims.stop()
+		if (this.checkPath()) {
 			return
 		}
 

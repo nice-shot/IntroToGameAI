@@ -21,6 +21,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "easystarjs": "^0.4.3",
     "phaser": "3.11.0"
   }
 }
