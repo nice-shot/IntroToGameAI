@@ -11,9 +11,6 @@ module.exports = {
 	}, {}),
 	plugins: [
 		new CleanWebpackPlugin(['./dist']),
-		new CopyWebpackPlugin([
-			'public',
-		]),
 		new HtmlWebpackPlugin({
 			inject: false,
 			template: './src/templates/index.html',

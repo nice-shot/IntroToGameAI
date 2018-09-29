@@ -1,29 +1,37 @@
-import Phaser from 'phaser';
+import Phaser from 'phaser'
+
+import NINJA_IMG from '../images/ninja.png'
+import GUARD_IMG from '../images/boss.png'
+import FLOORS_IMG from '../images/Interior_Floors_by_George.png'
+import WALLS_IMG from '../images/Interior_Walls_by_George.png'
+import NINJA_ATLAS from '../sprites/ninja_atlas.json'
+import GUARD_ATLAS from '../sprites/boss_atlas.json'
+import ROOM_MAP from '../maps/gameloop_map.json'
 
 // let controls;
-let player;
-let cursors;
-let guard;
-let guardMovingUp = false;
-let seenPlayer = false;
-let gameOverText;
-let restartBtn;
-let score = 0;
-let scoreText;
-let targetRight = true;
+let player
+let cursors
+let guard
+let guardMovingUp = false
+let seenPlayer = false
+let gameOverText
+let restartBtn
+let score = 0
+let scoreText
+let targetRight = true
 
 
 class GameLoop extends Phaser.Scene {
 	constructor() {
-		super('GameLoop');
+		super('GameLoop')
 	}
 
 	preload() {
-		this.load.atlas("ninja", "assets/ninja.png", "assets/ninja-atlas.json");
-		this.load.atlas("guard", "assets/boss.png", "assets/boss-atlas.json");
-		this.load.image("floors", "assets/Interior_Floors_by_George.png");
-		this.load.image("walls", "assets/Interior_Walls_by_George.png");
-		this.load.tilemapTiledJSON("map", "assets/gameloop_map.json");
+		this.load.atlas("ninja", NINJA_IMG, NINJA_ATLAS);
+		this.load.atlas("guard", GUARD_IMG, GUARD_ATLAS);
+		this.load.image("floors", FLOORS_IMG);
+		this.load.image("walls", WALLS_IMG);
+		this.load.tilemapTiledJSON("map", ROOM_MAP);
 	}
 
 	create() {
