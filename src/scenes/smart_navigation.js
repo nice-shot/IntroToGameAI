@@ -3,7 +3,7 @@ import TILESET from '../images/castle_tileset.png'
 import MAP from '../maps/complex_navigation_map.json'
 import EasyStar from 'easystarjs'
 
-import Ninja from '../ninja.js'
+import Ninja from '../nav_ninja.js'
 
 let character
 let starmap
@@ -23,7 +23,7 @@ class SmartNavigation extends Phaser.Scene {
 		const map = this.make.tilemap({ key: "map" })
 		const tileset = map.addTilesetImage("Castle", "tileset")
 		const floorLayer = map.createStaticLayer('Floor', tileset, 0, 0)
-		const wallsLayer = map.createStaticLayer('Walls', tileset, 0, 0)
+		const wallsLayer = map.createStaticLayer('WallsWithAbove', tileset, 0, 0)
 			.setCollisionBetween(1, 999)
 		const aboveLayer = map.createStaticLayer('Above', tileset, 0, 0)
 			.setDepth(30)
@@ -55,8 +55,8 @@ class SmartNavigation extends Phaser.Scene {
 				pointer.position.y
 			)
 
-			console.log(currentTile)
-			console.log(targetTile)
+			// console.log(currentTile)
+			// console.log(targetTile)
 			starmap.findPath(
 				currentTile.x,
 				currentTile.y,
@@ -76,7 +76,7 @@ class SmartNavigation extends Phaser.Scene {
 
 			character.waitingForPath = true
 		})
-		this.physics.add.collider(wallsLayer, character.sprite)
+		// this.physics.add.collider(wallsLayer, character.sprite)
 	}
 
 	update(time, delta) {
