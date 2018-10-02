@@ -3,7 +3,7 @@ import DiamondHeist from '../scenes/diamond_heist'
 
 const game = loadGame({
 	scene: [DiamondHeist],
-	width: 240,
-	height: 240,
+	width: 304,
+	height: 272,
 	zoom: 2,
 })

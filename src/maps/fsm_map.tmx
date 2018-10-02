@@ -70,7 +70,7 @@
   <object id="2" name="GuardPosition" x="120" y="104">
    <point/>
   </object>
-  <object id="3" name="NinjaPosition" x="40" y="216">
+  <object id="3" name="NinjaPosition" x="48" y="208">
    <point/>
   </object>
  </objectgroup>
