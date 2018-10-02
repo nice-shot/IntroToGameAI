@@ -87,7 +87,6 @@ class Character {
 			// Set movement animation
 			this.direction = radToDirection(this.sprite.body.angle)
 
-			debugger
 			switch (this.direction) {
 				case Direction.down:
 					anims.play(name + '_front_walk', true)
