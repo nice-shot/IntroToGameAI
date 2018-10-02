@@ -24,6 +24,8 @@ class DiamondHeist extends Phaser.Scene {
 		const floorLayer = map.createStaticLayer('Floor', tileset, 0, 0)
 		const wallsLayer = map.createStaticLayer('Walls', tileset, 0, 0)
 			.setCollisionBetween(1, 999)
+		const marksLayer = map.createStaticLayer('AreasOfInterest', tileset, 0, 0)
+			.setAlpha(0.7)
 
 		const playerSpawn = map.findObject(
 			"Objects",
