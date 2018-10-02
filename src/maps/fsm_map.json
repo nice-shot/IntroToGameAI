@@ -51,8 +51,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":120,
-                 "y":104
+                 "x":96,
+                 "y":96
                 }, 
                 {
                  "height":0,
@@ -65,6 +65,17 @@
                  "width":0,
                  "x":48,
                  "y":208
+                }, 
+                {
+                 "height":80,
+                 "id":4,
+                 "name":"GuardPatrol",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":112,
+                 "x":98,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -73,7 +84,7 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":4,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.0",

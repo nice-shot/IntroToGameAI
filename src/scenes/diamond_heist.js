@@ -3,8 +3,10 @@ import ArrowControlledCharacter from '../arrow_controlled_character'
 
 import MAP from '../maps/fsm_map.json'
 import TILESET from '../images/castle_tileset.png'
+import Character from '../character';
 
 let player = new ArrowControlledCharacter('ninja')
+let guard = new Character('boss')
 
 class DiamondHeist extends Phaser.Scene {
 	constructor() {
@@ -13,6 +15,7 @@ class DiamondHeist extends Phaser.Scene {
 
 	preload() {
 		player.preload(this)
+		guard.preload(this)
 		this.load.image('tiles', TILESET);
 		this.load.tilemapTiledJSON('map', MAP);
 	}
@@ -28,13 +31,20 @@ class DiamondHeist extends Phaser.Scene {
 			.setAlpha(0.7)
 
 		const playerSpawn = map.findObject(
-			"Objects",
-			obj => obj.name === "NinjaPosition"
+			'Objects',
+			obj => obj.name === 'NinjaPosition'
+		)
+
+		const guardSpawn = map.findObject(
+			'Objects',
+			obj => obj.name === 'GuardPosition'
 		)
 
 		player.create(this, playerSpawn.x, playerSpawn.y)
+		guard.create(this, guardSpawn.x, guardSpawn.y)
 
 		this.physics.add.collider(wallsLayer, player.sprite)
+		this.physics.add.collider(wallsLayer, guard.sprite)
 	}
 
 	update(time, delta) {
