@@ -7,6 +7,8 @@ import Character from '../character';
 
 let player = new ArrowControlledCharacter('ninja')
 let guard = new Character('boss')
+let patrolStack = [];
+let guardCurrentTarget;
 
 class DiamondHeist extends Phaser.Scene {
 	constructor() {
@@ -40,15 +42,51 @@ class DiamondHeist extends Phaser.Scene {
 			obj => obj.name === 'GuardPosition'
 		)
 
+		const guardPatrol = map.findObject(
+			'Objects',
+			obj => obj.name === 'GuardPatrol'
+		)
+
+		patrolStack.push(new Phaser.Math.Vector2(
+			guardPatrol.x,
+			guardPatrol.y + guardPatrol.height - 16
+		))
+		patrolStack.push(new Phaser.Math.Vector2(
+			guardPatrol.x + guardPatrol.width - 16,
+			guardPatrol.y + guardPatrol.height - 16
+		))
+		patrolStack.push(new Phaser.Math.Vector2(
+			guardPatrol.x + guardPatrol.width - 16,
+			guardPatrol.y
+		))
+		patrolStack.push(new Phaser.Math.Vector2(
+			guardPatrol.x,
+			guardPatrol.y
+		))
+		guardCurrentTarget = patrolStack.shift()
+
 		player.create(this, playerSpawn.x, playerSpawn.y)
 		guard.create(this, guardSpawn.x, guardSpawn.y)
 
 		this.physics.add.collider(wallsLayer, player.sprite)
-		this.physics.add.collider(wallsLayer, guard.sprite)
+		// this.physics.add.collider(wallsLayer, guard.sprite)
 	}
 
 	update(time, delta) {
 		player.update(this, time, delta)
+
+		// Move guard
+		const guardSpeed = 50
+		const Equal = Phaser.Math.Fuzzy.Equal
+		// console.log(`Guard: ${guard.sprite.x} - ${guard.sprite.y}`)
+		guard.sprite.setVelocity(0)
+		if (Equal(guard.sprite.x, guardCurrentTarget.x, 1)
+			&& Equal(guard.sprite.y, guardCurrentTarget.y, 1)) {
+			patrolStack.push(guardCurrentTarget)
+			guardCurrentTarget = patrolStack.shift()
+		}
+		this.physics.moveTo(guard.sprite, guardCurrentTarget.x, guardCurrentTarget.y, guardSpeed)
+		guard.update()
 	}
 }
 
