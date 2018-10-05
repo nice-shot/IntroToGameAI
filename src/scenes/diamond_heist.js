@@ -62,6 +62,7 @@ class DiamondHeist extends Phaser.Scene {
 		guard.create(this, guardSpawn.x, guardSpawn.y)
 
 		this.physics.add.collider(wallsLayer, player.sprite)
+		this.physics.add.collider(player.sprite, guard.sprite)
 	}
 
 	update(time, delta) {
